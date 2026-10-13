@@ -4,14 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.service.RabbitResourceManager;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/rabbitmq")
-@RequiredArgsConstructor
 public class RabbitMQController {
 
     private final RabbitResourceManager resourceManager;
+
+    public RabbitMQController(RabbitResourceManager resourceManager) {
+        this.resourceManager = resourceManager;
+    }
 
     @PostMapping("/queues")
     public ResponseEntity<String> createQueue(@RequestParam String queueName) {

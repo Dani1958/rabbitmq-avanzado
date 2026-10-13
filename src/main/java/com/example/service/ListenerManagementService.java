@@ -3,17 +3,19 @@ package com.example.service;
 import org.springframework.amqp.core.MessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry;
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class ListenerManagementService {
 
     private final RabbitListenerEndpointRegistry registry;
+
+    public ListenerManagementService(RabbitListenerEndpointRegistry registry) {
+        this.registry = registry;
+    }
 
     // Spring AMQP no tiene pause(): stop() deja de consumir y start() lo reanuda
     public void pauseListener(String listenerId) {
