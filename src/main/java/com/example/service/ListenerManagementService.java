@@ -17,7 +17,6 @@ public class ListenerManagementService {
         this.registry = registry;
     }
 
-    // Spring AMQP no tiene pause(): stop() deja de consumir y start() lo reanuda
     public void pauseListener(String listenerId) {
         try {
             MessageListenerContainer container = registry.getListenerContainer(listenerId);
